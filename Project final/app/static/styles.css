@@ -1,0 +1,551 @@
+:root {
+  --gray-01: #f6f6f6;
+  --gray-02: #e8e8e8;
+  --primary-color: #007bff;
+  --primary-hover: #0056b3;
+  --dropdown-bg: #fff;
+  --dropdown-border: #ccc;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: 100%;
+    /* overflow: hidden; */
+}
+
+#name {
+  color: rgb(255, 255, 255);
+  position: fixed;
+  background-color: rgb(0, 0, 0);
+  border-radius: 5px;
+  padding: 0px 5px;
+  font-size: 1.2rem;
+
+}
+
+body {   
+  height: 100vh;
+  
+  background: linear-gradient(
+      90deg,
+      rgba(218, 60, 19, 1),
+      rgba(230, 84, 12, 1),
+      rgba(249, 120, 0, 1)
+  );
+  background-size: 300% 300%; /* Increase size to create space for animation */
+  /*animation: gradientAnimation 5s ease infinite;*/
+}
+
+@keyframes gradientAnimation {
+  0% {
+      background-position: 0% 50%;
+  }
+  50% {
+      background-position: 100% 50%;
+  }
+  100% {
+      background-position: 0% 50%;
+  }
+}
+
+
+
+svg path {
+  cursor: pointer;
+}
+
+
+
+/* Top Navbar */
+.top-navbar {
+  margin-top: 1%;
+  margin-bottom: 1%;
+  height: 5%;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: flex-end; /* Align the containers to the right */
+  align-items: center;
+  position: relative; /* Ensure that child elements are positioned relative to this container */
+}
+.logo img {
+  width: 12%;
+}
+
+.allPaths {
+  fill: #ececec; /* Default fill color */
+  stroke: black; /* Stroke color */
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+
+
+.maincontainer {
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  gap:50px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+
+
+
+
+.world-1 {
+  width: 80%;
+  transition: width 500ms ease-out;
+  top: 200%; /* Aligns the element at the top */
+  
+  
+}
+
+.inputs {
+    display: none;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+
+
+.inputs.active {
+    display: flex;
+    opacity: 1;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 400px;
+  position: relative;
+}
+.frame-1 {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+.countrytitle {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Inter-SemiBold", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  position: relative;
+}
+
+.title {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Inter-SemiBold", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  position: relative;
+}
+.webselect-container {
+  position: relative;
+  width: 400px;
+}
+
+.webselect-container {
+  position: relative;
+  width: 400px;;
+}
+
+.webselect {
+  background: var(--gray-01);
+  border: 1px solid var(--gray-02);
+  border-radius: 8px;
+  padding: 15px 40px 15px 16px;
+  width: 100%;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+  appearance: none; /* Remove default appearance */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: relative;
+  z-index: 1;
+}
+
+.webselect:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* place above------------------------------------------*/
+
+
+.choose-website {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+#dynamic-inputs {
+  margin-bottom: 15px;
+}
+
+.button-frame {
+  margin-top: 5%;
+  display: flex; /* Aligns items in a row */
+  justify-content: center; /* Centers the buttons horizontally */
+  gap: 10px; /* Adds space between the buttons */
+}
+
+
+/* Styles for form elements */
+.input-field {
+  margin-bottom: 15px;
+}
+
+.input-field label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.choose-website {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+#sector, #site,#keywords {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+
+
+/* loader */
+
+/* Modal Styles */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  z-index: 1000; /* Ensure it appears on top of other elements */
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Loading Animation */
+.loader {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top: 4px solid #9a0606;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 10px;
+}
+
+@keyframes spin {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+}
+
+
+/* Success Modal */
+#successModal {
+  display: none; /* Hidden by default */
+}
+
+#successModal .modal-content {
+  background-color: #ffffff;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 40%;
+}
+
+#successModal .close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #bf0606;
+}
+
+#successModal .close:hover {
+  color: #8c0404;
+}
+
+#successModal p {
+  margin-bottom: 20px;
+}
+
+#successModal button {
+  background-color: #bf0606;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+#successModal button:hover {
+  background-color: #8c0404;
+}
+
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 24px;
+  color: #333;
+}
+
+
+.model-down {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Ensure modal appears above other content */
+}
+
+
+
+.download-link-custom {
+  text-align: center;
+  margin-top: 20px; /* Adjust margin as needed */
+}
+
+.download-link-custom a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #9a0606;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.download-link-custom a:hover {
+  background-color: #ffdd00;
+}
+
+
+
+
+/* HIGHLIGHTER ================================== */
+.highlight {
+  position:absolute;
+  height:60%; 
+  width:100px; 
+  top:25%; 
+  left:0;
+  pointer-events:none;
+  opacity:0.5;
+}
+
+/* active state */
+input:focus ~ .highlight {
+  -webkit-animation:inputHighlighter 0.3s ease;
+  -moz-animation:inputHighlighter 0.3s ease;
+  animation:inputHighlighter 0.3s ease;
+}
+
+/* checkbox selligent  */
+
+.checkbox-text {
+  display: inline-flex;
+  align-items: center;
+  color:white;
+  font-size: 16px; /* Adjust the font size as needed */
+}
+
+.checkbox-text input[type="checkbox"] {
+  margin-left: 8px; /* Space between the text and the checkbox */
+  width: 20px; /* Customize width */
+  height: 20px; /* Customize height */
+  accent-color: #f44336; /* Optional: customize checkbox color */
+}
+
+
+
+/* menu list */
+
+/* Common styles for menuTools containers */
+#menuTools-container1, #menuTools-container2, #menuTools-container3 {
+  position: relative;
+  z-index: 1000; /* Ensure the menu is above other elements */
+  margin-right: 50px; /* Space between menu tools */
+}
+
+/* Remove margin from the last container */
+#menuTools-container3 {
+  margin-right: 0;
+}
+
+#menuTools-wrapper1, #menuTools-wrapper2, #menuTools-wrapper3 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+#hamburger-menuTools1, #hamburger-menuTools2, #hamburger-menuTools3 {
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#hamburger-menuTools1 span, #hamburger-menuTools2 span, #hamburger-menuTools3 span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+
+#tool-menuTools1, #tool-menuTools2, #tool-menuTools3 {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px 0 0 0;
+  display: none;
+  position: absolute; /* Ensure the menu is positioned absolutely within its container */
+  top: 100%; /* Position it below the hamburger icon */
+  right: 0; /* Align to the right of the hamburger icon */
+  bottom: 0;
+   /* Background color for visibility */
+  border-radius: 5px; /* Rounded corners */
+  z-index: 99999999;
+}
+
+#tool-menuTools1 li, #tool-menuTools2 li, #tool-menuTools3 li {
+  margin-bottom: 10px;
+  position: relative;
+}
+
+#tool-menuTools1 img, #tool-menuTools2 img, #tool-menuTools3 img {
+  width: 40px;
+  height: auto;
+  cursor: pointer;
+}
+
+#tool-menuTools1 li::after, #tool-menuTools2 li::after, #tool-menuTools3 li::after {
+  content: attr(data-country);
+  position: absolute;
+  right: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #000000;
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+#tool-menuTools1 li:hover::after, #tool-menuTools2 li:hover::after, #tool-menuTools3 li:hover::after {
+  opacity: 1;
+}
+
+#hamburger-menuTools1.active span:nth-child(1),
+#hamburger-menuTools2.active span:nth-child(1),
+#hamburger-menuTools3.active span:nth-child(1) {
+  transform: translateY(13px) rotate(45deg);
+}
+
+#hamburger-menuTools1.active span:nth-child(2),
+#hamburger-menuTools2.active span:nth-child(2),
+#hamburger-menuTools3.active span:nth-child(2) {
+  opacity: 0;
+}
+
+#hamburger-menuTools1.active span:nth-child(3),
+#hamburger-menuTools2.active span:nth-child(3),
+#hamburger-menuTools3.active span:nth-child(3) {
+  transform: translateY(-13px) rotate(-45deg);
+}
+
+#hamburger-menuTools1 span,
+#hamburger-menuTools2 span,
+#hamburger-menuTools3 span {
+  transition: all 0.3s ease-in-out;
+}
+
+
+#hamburger-menuTools1 svg {
+  width: 150%;
+  height: 150%;
+  
+}
+
+#hamburger-menuTools2 svg {
+  width: 150%;
+  height: 150%;
+  fill: #fff; /* Icon color */
+}

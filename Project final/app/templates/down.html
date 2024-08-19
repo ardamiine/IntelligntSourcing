@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="model-down" id="modall">
+    <span onclick="closeModal()" class="close-button" id="close-button">&times;</span>
+    <p>Here is your {{filename}} </p>
+    <div class="download-link-custom">
+        <a href="{{ url_for('download_file', filename=filename) }}">Download Excel</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="model-down" id="modall">
+    <span onclick="closeModal()" class="close-button" id="close-button">&times;</span>
+    <div class="details">
+        {% for key, value in data.items() %}
+                <p><strong>{{ key }}:</strong> {{ value }}</p>
+        {% endfor %}
+    </div>
+    <div class="download-link-custom">
+        <a onclick="closeModal()">OK</a>
+    </div>
+</div>
+
+{% endblock %}
