@@ -67,8 +67,8 @@ svg path {
   display: flex;
   justify-content: flex-end; /* Align the containers to the right */
   align-items: center;
-  position: relative; /* Ensure that child elements are positioned relative to this container */
 }
+
 .logo img {
   width: 12%;
 }
@@ -106,7 +106,8 @@ svg path {
   
 }
 
-.inputs {
+.inputs,
+.frame-7 {
     display: none;
     opacity: 0;
     transition: opacity 1s ease-in-out;
@@ -114,7 +115,8 @@ svg path {
 
 
 
-.inputs.active {
+.inputs.active,
+.frame-7.active {
     display: flex;
     opacity: 1;
 }
@@ -190,16 +192,6 @@ svg path {
 
 
 
-
-
-
-
-
-
-
-
-
-
 /* place above------------------------------------------*/
 
 
@@ -218,12 +210,14 @@ svg path {
 }
 
 .button-frame {
-  margin-top: 5%;
   display: flex; /* Aligns items in a row */
   justify-content: center; /* Centers the buttons horizontally */
   gap: 10px; /* Adds space between the buttons */
 }
 
+.frame-7:hover {
+  background-color: #035411;
+}
 
 /* Styles for form elements */
 .input-field {
@@ -246,7 +240,7 @@ svg path {
   margin-bottom: 15px;
 }
 
-#sector, #site,#keywords {
+#sector, #keywords {
   width: 100%;
   padding: 10px;
   font-size: 16px;
@@ -392,9 +386,66 @@ svg path {
 .download-link-custom a:hover {
   background-color: #ffdd00;
 }
+* form starting stylings ------------------------------- */
+.group 			  { 
+  position:relative; 
+  margin-bottom:45px; 
+}
+input 				{
+  font-size:18px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  width:300px;
+  border:none;
+  border-bottom:1px solid #757575;
+}
+input:focus 		{ outline:none; }
 
+/* LABEL ======================================= */
+label 				 {
+  color:#999; 
+  font-size:18px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:5px;
+  top:10px;
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
 
+/* active state */
+input:focus ~ label, input:valid ~ label 		{
+  top:-20px;
+  font-size:14px;
+  color:#5264AE;
+}
 
+/* BOTTOM BARS ================================= */
+.bar 	{ position:relative; display:block; width:300px; }
+.bar:before, .bar:after 	{
+  content:'';
+  height:2px; 
+  width:0;
+  bottom:1px; 
+  position:absolute;
+  background:#5264AE; 
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+.bar:before {
+  left:50%;
+}
+.bar:after {
+  right:50%; 
+}
+
+/* active state */
+input:focus ~ .bar:before, input:focus ~ .bar:after {
+  width:50%;
+}
 
 /* HIGHLIGHTER ================================== */
 .highlight {
@@ -417,6 +468,7 @@ input:focus ~ .highlight {
 /* checkbox selligent  */
 
 .checkbox-text {
+  margin-bottom:15px;
   display: inline-flex;
   align-items: center;
   color:white;
@@ -424,12 +476,12 @@ input:focus ~ .highlight {
 }
 
 .checkbox-text input[type="checkbox"] {
+  margin-bottom:8px;
   margin-left: 8px; /* Space between the text and the checkbox */
   width: 20px; /* Customize width */
   height: 20px; /* Customize height */
   accent-color: #f44336; /* Optional: customize checkbox color */
 }
-
 
 
 /* menu list */
