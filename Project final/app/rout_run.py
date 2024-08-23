@@ -4,7 +4,7 @@ from Germany.insolvenzbekanntmachungen import Insolvenzbekanntmachungen
 from Germany.unternehmensregister import unternehmensregister
 from Germany.dealone import deal
 from waitress import serve
-from tools import save_to_excel,convert_to_df,convert_to_df,reverse_date_format,translate_to_en,reverse_date_format1
+from tools import save_to_excel,convert_to_df,convert_to_df,reverse_date_format,translate_to_en,reverse_date_format1,analyse_rapport
 from Denmark.statstidendeProffAuktioner import statstidendeProffAuktioner
 from Denmark.proff import proff
 from Denmark.auktioner import auktioner
@@ -150,6 +150,44 @@ def index():
 def download_file(filename):
     path = filename  # Assuming the file is in the current working directory
     return send_file(path, as_attachment=True)
+
+@app.route('/submit-report', methods=['POST'])
+def submit_report():
+    # Get the JSON data from the request
+    data = request.get_json()
+
+    # Extract 'report' and 'country' from the data
+    report_text = data.get('report')
+    country = data.get('country')
+
+    
+    result = analyse_rapport(report_text)
+    response_message = {
+        'message': f'Report for {country}: {result}'
+    }
+
+    return jsonify(response_message), 200
+
+@app.route('/submit-curator', methods=['POST'])
+def submit_curator():
+    # Get the JSON data from the request
+    data = request.get_json()
+
+    # Extract 'report' and 'country' from the data
+    numcvr = data.get('report')
+    country = data.get('country')
+    print(numcvr,country)
+
+    
+    
+    result, a, b = auktioner(numcvr)
+    
+    response_message = {
+        'message': f'Report for {country}: {result}'
+    }
+    print(response_message)
+    return jsonify(response_message), 200
+
 
 #waitress  
 """if __name__ == '__main__':

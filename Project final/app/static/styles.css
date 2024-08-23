@@ -12,7 +12,7 @@
     margin: 0;
     padding: 0;
     box-sizing: 100%;
-    /* overflow: hidden; */
+    /*overflow: hidden; */
 }
 
 #name {
@@ -67,10 +67,14 @@ svg path {
   display: flex;
   justify-content: flex-end; /* Align the containers to the right */
   align-items: center;
+  
 }
 
 .logo img {
-  width: 12%;
+  width: 10%;
+  position: fixed; /* Fixes the position of the logo */
+  top: 0; /* Aligns the logo to the top of the screen */
+  left: 0; /* Aligns the logo to the right of the screen */
 }
 
 .allPaths {
@@ -241,7 +245,7 @@ svg path {
 }
 
 #sector, #keywords {
-  width: 100%;
+  width: 94%;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
@@ -490,7 +494,7 @@ input:focus ~ .highlight {
 #menuTools-container1, #menuTools-container2, #menuTools-container3 {
   position: relative;
   z-index: 1000; /* Ensure the menu is above other elements */
-  margin-right: 50px; /* Space between menu tools */
+  margin-right: 100px; /* Space between menu tools */
 }
 
 /* Remove margin from the last container */
@@ -507,6 +511,7 @@ input:focus ~ .highlight {
 #hamburger-menuTools1, #hamburger-menuTools2, #hamburger-menuTools3 {
   width: 30px;
   height: 20px;
+  margin-left: 30px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -523,16 +528,19 @@ input:focus ~ .highlight {
 
 #tool-menuTools1, #tool-menuTools2, #tool-menuTools3 {
   list-style-type: none;
-  padding: 0;
+  padding: 10px; /* Added padding for better spacing */
   margin: 20px 0 0 0;
   display: none;
-  position: absolute; /* Ensure the menu is positioned absolutely within its container */
-  top: 100%; /* Position it below the hamburger icon */
+  position: absolute; 
+  top: 100%; /* Position below the hamburger icon */
   right: 0; /* Align to the right of the hamburger icon */
-  bottom: 0;
-   /* Background color for visibility */
-  border-radius: 5px; /* Rounded corners */
-  z-index: 99999999;
+  background-color: rgba(255, 255, 255, 0.8); /* White background with 80% opacity */
+  border-radius: 5px; 
+  z-index: 99999999; /* Ensure it's above other elements */
+  max-height: 300px;
+  min-height: 300px;/* Limit the height to make it scrollable */
+  overflow-y: hidden; /* Enable vertical scrolling */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a shadow for better visibility */
 }
 
 #tool-menuTools1 li, #tool-menuTools2 li, #tool-menuTools3 li {
@@ -589,15 +597,82 @@ input:focus ~ .highlight {
   transition: all 0.3s ease-in-out;
 }
 
-
 #hamburger-menuTools1 svg {
   width: 150%;
   height: 150%;
-  
 }
 
 #hamburger-menuTools2 svg {
   width: 150%;
   height: 150%;
   fill: #fff; /* Icon color */
+}
+
+/* Positioning the scroll buttons */
+.scroll-btn {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none; /* Hide by default */
+  justify-content: center;
+  align-items: center;
+  z-index: 100000000; /* Ensure it's above the menu */
+  transition: background-color 0.3s ease;
+  
+}
+
+.scroll-btn:hover {
+  background-color: rgba(0, 0, 0, 0.7); /* Darker on hover */
+}
+
+.scroll-up {
+  top: 0; /* Position at the top of the list container */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.scroll-down {
+   bottom:0;/* Position at the bottom of the list container */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Make scroll buttons visible when list is shown */
+#tool-menuTools1.show .scroll-btn,
+#tool-menuTools2.show .scroll-btn,
+#tool-menuTools3.show .scroll-btn {
+  display: flex; /* Show buttons */
+}
+
+/* General Styles for Scroll Buttons */
+
+
+/* Ensure flags are displayed in a row */
+#tool-menuTools1 {
+  display: flex;
+  flex-wrap: wrap; /* Wrap flags to the next line if needed */
+  gap: 10px; /* Add space between flags */
+}
+
+#tool-menuTools1 img {
+  width: 40px;
+  height: auto;
+  cursor: pointer;
+}
+.scroll-up
+{
+  display:none;
+  right :200px ;
+  top:20px;
+}
+.scroll-down
+{
+  right :200px ;
+  top:340px;
+  display:none;
 }

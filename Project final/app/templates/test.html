@@ -1,89 +1,129 @@
-#menuTools-container {
-    position: fixed;
-    top: 0;
-    right: 0;
-    padding: 20px;
+function handleReport(country) {
+  // Show the popup
+  const popup = document.getElementById('reportPopup');
+  popup.classList.remove('hidden');
+
+  // Function to close the popup
+  function closePopup() {
+      popup.classList.add('hidden');
+      document.removeEventListener('click', outsideClickListener);
+
+      // Reset all changes to the document
+      document.getElementById('loading').classList.add('hidden');
+      document.getElementById('response').classList.add('hidden');
+      document.getElementById('response').innerText = ''; // Clear response
+      document.getElementById('reportTextarea').value = ''; // Clear textarea
   }
-  
-  #menuTools-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+
+  // Handle analyze button click
+  const analyzeBtn = document.getElementById('analyzeBtn');
+  analyzeBtn.onclick = async function() {
+      // Show loading indicator
+      document.getElementById('loading').classList.remove('hidden');
+      document.getElementById('response').classList.add('hidden');
+
+      // Get the report text
+      const reportText = document.getElementById('reportTextarea').value;
+
+      try {
+          // Send request to the backend
+          const response = await fetch('/submit-report', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ report: reportText, country: country }),
+          });
+
+          // Parse and display the response
+          const result = await response.json();
+          document.getElementById('response').innerText = result.message;
+          document.getElementById('response').classList.remove('hidden');
+      } catch (error) {
+          document.getElementById('response').innerText = 'Error analyzing report.';
+          document.getElementById('response').classList.remove('hidden');
+      } finally {
+          // Hide loading indicator
+          document.getElementById('loading').classList.add('hidden');
+      }
+  };
+
+  // Handle cancel button click
+  const cancelBtn = document.getElementById('cancelBtn');
+  cancelBtn.onclick = closePopup;
+
+  // Handle click outside the popup
+  function outsideClickListener(event) {
+      if (!popup.contains(event.target) && !analyzeBtn.contains(event.target) && !cancelBtn.contains(event.target)) {
+          closePopup();
+      }
   }
-  
-  #hamburger-menuTools {
-    
-    width: 40px;
-    height: 30px;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+
+  // Add event listener for outside clicks
+  document.addEventListener('click', outsideClickListener);
+}
+
+function handleCurator(country) {
+  // Show the popup
+  const popup = document.getElementById('curatorPopup');
+  popup.classList.remove('curator-hidden');
+
+  // Function to close the popup
+  function closePopup() {
+      popup.classList.add('curator-hidden');
+      document.removeEventListener('click', outsideClickListener);
+
+      // Reset all changes to the document
+      document.getElementById('curatorLoading').classList.add('curator-hidden');
+      document.getElementById('curatorResponse').classList.add('curator-hidden');
+      document.getElementById('curatorResponse').innerText = ''; // Clear response
+      document.getElementById('curatorTextarea').value = ''; // Clear textarea
   }
-  
-  #hamburger-menuTools span {
-    display: block;
-    height: 4px;
-    width: 100%;
-    background-color: #ffffff;
-    transition: all 0.3s ease;
+
+  // Handle analyze button click
+  const analyzeBtn = document.getElementById('curatorAnalyzeBtn');
+  analyzeBtn.onclick = async function() {
+      // Show loading indicator
+      document.getElementById('curatorLoading').classList.remove('curator-hidden');
+      document.getElementById('curatorResponse').classList.add('curator-hidden');
+
+      // Get the report text
+      const reportText = document.getElementById('curatorTextarea').value;
+
+      try {
+          // Send request to the backend
+          const response = await fetch('/submit-report', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ report: reportText, country: country }),
+          });
+
+          // Parse and display the response
+          const result = await response.json();
+          document.getElementById('curatorResponse').innerText = result.message;
+          document.getElementById('curatorResponse').classList.remove('curator-hidden');
+      } catch (error) {
+          document.getElementById('curatorResponse').innerText = 'Error analyzing report.';
+          document.getElementById('curatorResponse').classList.remove('curator-hidden');
+      } finally {
+          // Hide loading indicator
+          document.getElementById('curatorLoading').classList.add('curator-hidden');
+      }
+  };
+
+  // Handle cancel button click
+  const cancelBtn = document.getElementById('curatorCancelBtn');
+  cancelBtn.onclick = closePopup;
+
+  // Handle click outside the popup
+  function outsideClickListener(event) {
+      if (!popup.contains(event.target) && !analyzeBtn.contains(event.target) && !cancelBtn.contains(event.target)) {
+          closePopup();
+      }
   }
-  
-  #tool-menuTools {
-    list-style-type: none;
-    padding: 0;
-    margin: 20px 0 0 0;
-    display: none;
-    z-index: 99999999;
-  }
-  
-  #tool-menuTools li {
-    margin-bottom: 10px;
-    position: relative;
-    z-index: 99999999;
-  }
-  
-  #tool-menuTools img {
-    width: 40px;
-    height: auto;
-    cursor: pointer;
-    z-index: 99999999;
-  }
-  
-  #tool-menuTools li::after {
-    content: attr(data-country);
-    position: absolute;
-    right: 50px;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: #ffffff;
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 5px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-    z-index: 99999999;
-  }
-  
-  #tool-menuTools li:hover::after {
-    opacity: 1;
-    z-index: 99999999;
-  }
-  
-  #hamburger-menuTools.active span:nth-child(1) {
-    transform: translateY(13px) rotate(45deg);
-  }
-  
-  #hamburger-menuTools.active span:nth-child(2) {
-    opacity: 0;
-  }
-  
-  #hamburger-menuTools.active span:nth-child(3) {
-    transform: translateY(-13px) rotate(-45deg);
-  }
-  
-  #hamburger-menuTools span {
-    transition: all 0.3s ease-in-out;
-  }
-  
+
+  // Add event listener for outside clicks
+  document.addEventListener('click', outsideClickListener);
+}

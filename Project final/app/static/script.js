@@ -53,7 +53,11 @@ document.addEventListener("DOMContentLoaded", function() {
             
             document.querySelector(".world-1").style.width = "40%";
             document.querySelector(".inputs").classList.add("active");
-            document.querySelector(".btn-6").classList.add("active"); 
+            document.querySelector(".btn-6").classList.add("active");
+            document.getElementById('menuTools-container2').style.display = countryName === "Germany" ? 'block' : 'none';
+            document.getElementById('menuTools-container1').style.display = countryName === "Denmark" ? 'block' : 'none';
+      
+            
 
             // Update websites based on selected country
             updateWebsites(countryName);
@@ -320,6 +324,8 @@ function returnToMap() {
     document.querySelector(".world-1").style.width = "80%";
     document.querySelector(".inputs").classList.remove("active");
     document.querySelector(".btn-6").classList.remove("active");
+    document.getElementById('menuTools-container2').style.display = countryName === "Germany" ? 'block' : 'none';
+    document.getElementById('menuTools-container1').style.display = countryName === "Denmark" ? 'block' : 'none';
 
 }
 
@@ -335,6 +341,8 @@ function handleFlagClick(countryName) {
     document.querySelector(".world-1").style.width = "40%";
     document.querySelector(".inputs").classList.add("active");
     document.querySelector(".btn-6").classList.add("active");
+    document.getElementById('menuTools-container2').style.display = countryName === "Germany" ? 'block' : 'none';
+    document.getElementById('menuTools-container1').style.display = countryName === "Denmark" ? 'block' : 'none';
    
 
     // Update websites based on the selected country
@@ -345,33 +353,39 @@ function handleReport(country) {
     // Show the popup
     const popup = document.getElementById('reportPopup');
     popup.classList.remove('hidden');
-
+  
     // Function to close the popup
     function closePopup() {
         popup.classList.add('hidden');
         document.removeEventListener('click', outsideClickListener);
+  
+        // Reset all changes to the document
+        document.getElementById('loading').classList.add('hidden');
+        document.getElementById('response').classList.add('hidden');
+        document.getElementById('response').innerText = ''; // Clear response
+        document.getElementById('reportTextarea').value = ''; // Clear textarea
     }
-
+  
     // Handle analyze button click
     const analyzeBtn = document.getElementById('analyzeBtn');
     analyzeBtn.onclick = async function() {
         // Show loading indicator
         document.getElementById('loading').classList.remove('hidden');
         document.getElementById('response').classList.add('hidden');
-
+  
         // Get the report text
         const reportText = document.getElementById('reportTextarea').value;
-
+  
         try {
             // Send request to the backend
-            const response = await fetch('/analyze-report', {
+            const response = await fetch('/submit-report', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ report: reportText, country: country }),
             });
-
+  
             // Parse and display the response
             const result = await response.json();
             document.getElementById('response').innerText = result.message;
@@ -384,21 +398,88 @@ function handleReport(country) {
             document.getElementById('loading').classList.add('hidden');
         }
     };
-
+  
     // Handle cancel button click
     const cancelBtn = document.getElementById('cancelBtn');
     cancelBtn.onclick = closePopup;
-
+  
     // Handle click outside the popup
     function outsideClickListener(event) {
         if (!popup.contains(event.target) && !analyzeBtn.contains(event.target) && !cancelBtn.contains(event.target)) {
             closePopup();
         }
     }
-
+  
     // Add event listener for outside clicks
     document.addEventListener('click', outsideClickListener);
-}
+  }
+  
+  function handleCurator(country) {
+    // Show the popup
+    const popup = document.getElementById('curatorPopup');
+    popup.classList.remove('curator-hidden');
+  
+    // Function to close the popup
+    function closePopup() {
+        popup.classList.add('curator-hidden');
+        document.removeEventListener('click', outsideClickListener);
+  
+        // Reset all changes to the document
+        document.getElementById('curatorLoading').classList.add('curator-hidden');
+        document.getElementById('curatorResponse').classList.add('curator-hidden');
+        document.getElementById('curatorResponse').innerText = ''; // Clear response
+        document.getElementById('curatorTextarea').value = ''; // Clear textarea
+    }
+  
+    // Handle analyze button click
+    const analyzeBtn = document.getElementById('curatorAnalyzeBtn');
+    analyzeBtn.onclick = async function() {
+        // Show loading indicator
+        document.getElementById('curatorLoading').classList.remove('curator-hidden');
+        document.getElementById('curatorResponse').classList.add('curator-hidden');
+  
+        // Get the report text
+        const reportText = document.getElementById('keywords').value;
+  
+        try {
+            // Send request to the backend
+            const response = await fetch('/submit-curator', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ report: reportText, country: country }),
+            });
+  
+            // Parse and display the response
+            const result = await response.json();
+            document.getElementById('curatorResponse').innerText = result.message;
+            document.getElementById('curatorResponse').classList.remove('curator-hidden');
+        } catch (error) {
+            document.getElementById('curatorResponse').innerText = 'Error analyzing report.';
+            document.getElementById('curatorResponse').classList.remove('curator-hidden');
+        } finally {
+            // Hide loading indicator
+            document.getElementById('curatorLoading').classList.add('curator-hidden');
+        }
+    };
+  
+    // Handle cancel button click
+    const cancelBtn = document.getElementById('curatorCancelBtn');
+    cancelBtn.onclick = closePopup;
+  
+    // Handle click outside the popup
+    function outsideClickListener(event) {
+        if (!popup.contains(event.target) && !analyzeBtn.contains(event.target) && !cancelBtn.contains(event.target)) {
+            closePopup();
+        }
+    }
+  
+    // Add event listener for outside clicks
+    document.addEventListener('click', outsideClickListener);
+  }
+  
+
 
 
 
@@ -409,6 +490,12 @@ function updateCarousel() {
     carousel.style.transform = `translateX(${offset}%)`;
     console.log('Updating carousel, transform:', carousel.style.transform);
 }
+
+
+
+
+
+
 
 
 

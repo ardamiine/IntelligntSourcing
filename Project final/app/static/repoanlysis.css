@@ -1,5 +1,5 @@
 /* Generate random string for class names to avoid interference */
-.popup {
+.popup,.curator-popup {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -16,13 +16,15 @@
     z-index: 1000000000000000;
 }
 
-.hidden {
+.hidden,.curator-hidden {
     display: none;
 }
 
-.popup-content {
+.popup-content,.curator-popup-content {
     display: flex;
     flex-direction: column;
+    min-width: 360px;
+    
 }
 
 #reportTextarea {
@@ -31,34 +33,18 @@
     margin-bottom: 15px;
 }
 
-.button-container {
+.button-container,.curator-button-container {
     display: flex;
     justify-content: space-between;
 }
 
-.analyze-btn, .cancel-btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
 
-.analyze-btn {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.cancel-btn {
-    background-color: #f44336;
-    color: white;
-}
-
-.loading {
+.loading,.curator-loading {
     margin-top: 10px;
     text-align: center;
 }
 
-.response {
+.response,.curator-response {
     margin-top: 10px;
     background-color: #f1f1f1;
     padding: 10px;
