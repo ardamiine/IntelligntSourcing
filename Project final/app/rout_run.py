@@ -162,9 +162,13 @@ def submit_report():
 
     
     result = analyse_rapport(report_text)
-    response_message = {
-        'message': f'Report for {country}: {result}'
-    }
+    response_message =  f"""
+        <div class="country">Report for {country}:</div>
+        <div class="procedure">{result[0]}</div>
+        <div class="details">
+            {''.join(f'<span><span class="label">{key}:{value}%</span></span>' for key, value in result[1].items())}
+        </div>
+    """
 
     return jsonify(response_message), 200
 

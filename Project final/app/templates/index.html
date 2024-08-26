@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='buttons.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='repoanlysis.css') }}">
-    <script src="{{ url_for('static', filename='menu.js') }}" defer></script>
-    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+    
+    
 
 </head>
 <body>
@@ -23,7 +23,9 @@
         <!-- First menuTools-container -->
         <div id="menuTools-container1" style="display: none;" onmousemove="handleCurator('Denmark')">
             <div id="menuTools-wrapper1">
+                <title>Curator</title>
                 <div id="hamburger-menuTools1">
+                    
                     <svg xmlns="http://www.w3.org/2000/svg" width="800px" height="800px" viewBox="0 0 24 24"
                         fill="none">
                         <path
@@ -35,13 +37,13 @@
             </div>
         </div>
         <!-- Second menuTools-container -->
-        <div id="menuTools-container2" onmouseover="handleReport('Germany')" style="display: none;">
+        <div id="menuTools-container2" onclick="handleReport('Germany')" style="display: none;">
             <div id="menuTools-wrapper2">
-                <div id="hamburger-menuTools2" onclick="handleReport('Germany')">
+                <div id="hamburger-menuTools2">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"
                         width="800px" height="800px" viewBox="0 0 36 36" version="1.1"
-                        preserveAspectRatio="xMidYMid meet" onclick="handleReport('Germany');">
-                        <title>tools-line</title>
+                        preserveAspectRatio="xMidYMid meet">
+                        <title>Rapport analysis</title>
                         <path
                             d="M20,14H16a1,1,0,0,0-1,1v6a1,1,0,0,0,1,1h4a1,1,0,0,0,1-1V15A1,1,0,0,0,20,14Zm-.4,6.6H16.4V15.4h3.2Z"
                             class="clr-i-outline clr-i-outline-path-1" />
@@ -58,6 +60,7 @@
         <div id="menuTools-container3">
             <div id="menuTools-wrapper3">
                 <div id="hamburger-menuTools3">
+                    <title>Available countries</title>
                     <span></span>
                     <span></span>
                     <span></span>
@@ -74,7 +77,7 @@
                 </ul>
             </div>
         </div>
-
+    <hr>
     </nav>
     <div class="maincontainer">
         <!-- world map imported-->
@@ -1700,7 +1703,9 @@
                 <button id="cancelBtn" class="btn-6">Cancel</button>
             </div>
             <div id="loading" class="loading hidden">Loading...</div>
-            <div id="response" class="response hidden"></div>
+            <div id="response" class="response hidden">
+                
+            </div>
         </div>
     </div>
     <div id="curatorPopup" class="curator-popup curator-hidden">
@@ -1723,8 +1728,9 @@
     </div>
     </div>
     </div>
-
-
+    <script src="{{ url_for('static', filename='menu.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='clicked.js') }}" defer></script>
 
 </body>
 

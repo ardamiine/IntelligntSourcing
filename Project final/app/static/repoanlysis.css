@@ -50,3 +50,50 @@
     padding: 10px;
     border-radius: 5px;
 }
+
+
+/* rapport analysis response */
+
+#response {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    color: #333;
+    margin-top: 20px;
+    right:50%;
+    
+}
+
+#response .country {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+#response .procedure {
+    color: #007BFF;
+    font-weight: bold;
+}
+
+#response .details {
+    margin-top: 10px;
+    align-items: center;
+}
+
+#response .details span {
+    display: block;
+    margin: 5px 0;
+}
+
+#response .details .label {
+    font-weight: bold;
+    color: #555;
+    margin-right: 10px; 
+}
+
+#response .details .value {
+    color: #333;
+
+}

@@ -353,7 +353,7 @@ function handleReport(country) {
     // Show the popup
     const popup = document.getElementById('reportPopup');
     popup.classList.remove('hidden');
-  
+
     // Function to close the popup
     function closePopup() {
         popup.classList.add('hidden');
@@ -365,7 +365,7 @@ function handleReport(country) {
         document.getElementById('response').innerText = ''; // Clear response
         document.getElementById('reportTextarea').value = ''; // Clear textarea
     }
-  
+
     // Handle analyze button click
     const analyzeBtn = document.getElementById('analyzeBtn');
     analyzeBtn.onclick = async function() {
@@ -388,7 +388,8 @@ function handleReport(country) {
   
             // Parse and display the response
             const result = await response.json();
-            document.getElementById('response').innerText = result.message;
+            document.getElementById('response').innerHTML = result;
+            
             document.getElementById('response').classList.remove('hidden');
         } catch (error) {
             document.getElementById('response').innerText = 'Error analyzing report.';
@@ -414,7 +415,7 @@ function handleReport(country) {
     document.addEventListener('click', outsideClickListener);
   }
   
-  function handleCurator(country) {
+function handleCurator(country) {
     // Show the popup
     const popup = document.getElementById('curatorPopup');
     popup.classList.remove('curator-hidden');
@@ -428,7 +429,7 @@ function handleReport(country) {
         document.getElementById('curatorLoading').classList.add('curator-hidden');
         document.getElementById('curatorResponse').classList.add('curator-hidden');
         document.getElementById('curatorResponse').innerText = ''; // Clear response
-        document.getElementById('curatorTextarea').value = ''; // Clear textarea
+
     }
   
     // Handle analyze button click
@@ -490,6 +491,7 @@ function updateCarousel() {
     carousel.style.transform = `translateX(${offset}%)`;
     console.log('Updating carousel, transform:', carousel.style.transform);
 }
+
 
 
 
