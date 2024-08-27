@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, send_file,jsonify
+from flask import Flask, render_template, request, send_file,jsonify,after_this_request
 from Germany.versteigerungskalender import verstei
 from Germany.insolvenzbekanntmachungen import Insolvenzbekanntmachungen
 from Germany.unternehmensregister import unternehmensregister
@@ -150,13 +150,16 @@ def index():
 @app.route('/download/<filename>')
 def download_file(filename):
     path = filename  # Assuming the file is in the current working directory
-    try:
-        response = send_file(path, as_attachment=True)
-    finally:
-        # Remove the file after sending it
-        if os.path.exists(path):
+    
+    @after_this_request
+    def cleanup(response):
+        try:
             os.remove(path)
-    return response
+        except Exception as e:
+            print(f"Error removing file {path}: {e}")
+        return response
+
+    return send_file(path, as_attachment=True)
 
 
 @app.route('/submit-report', methods=['POST'])
@@ -202,10 +205,10 @@ def submit_curator():
 
 
 #waitress  
-"""if __name__ == '__main__':
-    serve(app, host='0.0.0.0', port=8181)
-"""
-
-#run
 if __name__ == '__main__':
-    app.run(debug=True)
+    serve(app, host='172.25.0.92', port=8181)
+
+
+"""#run
+if __name__ == '__main__':
+    app.run(debug=True)"""
