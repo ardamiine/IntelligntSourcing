@@ -10,6 +10,7 @@ from Denmark.proff import proff
 from Denmark.auktioner import auktioner
 from Denmark.statstidende import statstidende
 from UnitedKingdom.gazetteuk import GazetteUK
+import os
 
 app = Flask(__name__)
 
@@ -149,7 +150,14 @@ def index():
 @app.route('/download/<filename>')
 def download_file(filename):
     path = filename  # Assuming the file is in the current working directory
-    return send_file(path, as_attachment=True)
+    try:
+        response = send_file(path, as_attachment=True)
+    finally:
+        # Remove the file after sending it
+        if os.path.exists(path):
+            os.remove(path)
+    return response
+
 
 @app.route('/submit-report', methods=['POST'])
 def submit_report():
