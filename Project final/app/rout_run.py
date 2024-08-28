@@ -206,9 +206,9 @@ def submit_curator():
 
 #waitress  
 if __name__ == '__main__':
-    serve(app, host='172.25.0.92', port=8181)
+    serve(app, host='0.0.0.0', port=1208)
 
-
-"""#run
+#flask debug mode
+"""
 if __name__ == '__main__':
     app.run(debug=True)"""

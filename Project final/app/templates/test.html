@@ -1,129 +1,74 @@
-function handleReport(country) {
-  // Show the popup
-  const popup = document.getElementById('reportPopup');
-  popup.classList.remove('hidden');
+<script>
+    function handleReport(country) {
+    // Show the popup
+    const popup = document.getElementById('reportPopup');
+    popup.classList.remove('hidden');
 
-  // Function to close the popup
-  function closePopup() {
-      popup.classList.add('hidden');
-      document.removeEventListener('click', outsideClickListener);
+    // Function to close the popup
+    function closePopup() {
+        popup.classList.add('hidden');
+        document.removeEventListener('click', outsideClickListener);
+  
+        // Reset all changes to the document
+        document.getElementById('loading').classList.add('hidden');
+        document.getElementById('response').classList.add('hidden');
+        document.getElementById('response').innerText = ''; // Clear response
+        document.getElementById('reportTextarea').value = ''; // Clear textarea
+    }
 
-      // Reset all changes to the document
-      document.getElementById('loading').classList.add('hidden');
-      document.getElementById('response').classList.add('hidden');
-      document.getElementById('response').innerText = ''; // Clear response
-      document.getElementById('reportTextarea').value = ''; // Clear textarea
-  }
+    // Handle analyze button click
+    const analyzeBtn = document.getElementById('analyzeBtn');
+    analyzeBtn.onclick = async function(event) {
+        event.stopPropagation();  // Prevent the event from triggering the outsideClickListener
 
-  // Handle analyze button click
-  const analyzeBtn = document.getElementById('analyzeBtn');
-  analyzeBtn.onclick = async function() {
-      // Show loading indicator
-      document.getElementById('loading').classList.remove('hidden');
-      document.getElementById('response').classList.add('hidden');
-
-      // Get the report text
-      const reportText = document.getElementById('reportTextarea').value;
-
-      try {
-          // Send request to the backend
-          const response = await fetch('/submit-report', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({ report: reportText, country: country }),
-          });
-
-          // Parse and display the response
-          const result = await response.json();
-          document.getElementById('response').innerText = result.message;
-          document.getElementById('response').classList.remove('hidden');
-      } catch (error) {
-          document.getElementById('response').innerText = 'Error analyzing report.';
-          document.getElementById('response').classList.remove('hidden');
-      } finally {
-          // Hide loading indicator
-          document.getElementById('loading').classList.add('hidden');
-      }
-  };
-
-  // Handle cancel button click
-  const cancelBtn = document.getElementById('cancelBtn');
-  cancelBtn.onclick = closePopup;
-
-  // Handle click outside the popup
-  function outsideClickListener(event) {
-      if (!popup.contains(event.target) && !analyzeBtn.contains(event.target) && !cancelBtn.contains(event.target)) {
-          closePopup();
-      }
-  }
-
-  // Add event listener for outside clicks
-  document.addEventListener('click', outsideClickListener);
+        // Show loading indicator
+        document.getElementById('loading').classList.remove('hidden');
+        document.getElementById('response').classList.add('hidden');
+  
+        // Get the report text
+        const reportText = document.getElementById('reportTextarea').value;
+  
+        try {
+            // Send request to the backend
+            const response = await fetch('/submit-report', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ report: reportText, country: country }),
+            });
+  
+            // Parse and display the response
+            const result = await response.json();
+            document.getElementById('response').innerHTML = result;
+            
+            document.getElementById('response').classList.remove('hidden');
+        } catch (error) {
+            document.getElementById('response').innerText = 'Error analyzing report.';
+            document.getElementById('response').classList.remove('hidden');
+        } finally {
+            // Hide loading indicator
+            document.getElementById('loading').classList.add('hidden');
+        }
+    };
+  
+    // Handle cancel button click
+    const cancelBtn = document.getElementById('cancelBtn');
+    cancelBtn.onclick = function(event) {
+        event.stopPropagation();  // Prevent the event from triggering the outsideClickListener
+        closePopup();
+    };
+  
+    // Handle click outside the popup
+    function outsideClickListener(event) {
+        if (!popup.contains(event.target) && event.target !== analyzeBtn && event.target !== cancelBtn) {
+            closePopup();
+        }
+    }
+  
+    // Add event listener for outside clicks after a brief delay
+    setTimeout(() => {
+        document.addEventListener('click', outsideClickListener);
+    }, 0);
 }
-
-function handleCurator(country) {
-  // Show the popup
-  const popup = document.getElementById('curatorPopup');
-  popup.classList.remove('curator-hidden');
-
-  // Function to close the popup
-  function closePopup() {
-      popup.classList.add('curator-hidden');
-      document.removeEventListener('click', outsideClickListener);
-
-      // Reset all changes to the document
-      document.getElementById('curatorLoading').classList.add('curator-hidden');
-      document.getElementById('curatorResponse').classList.add('curator-hidden');
-      document.getElementById('curatorResponse').innerText = ''; // Clear response
-      document.getElementById('curatorTextarea').value = ''; // Clear textarea
-  }
-
-  // Handle analyze button click
-  const analyzeBtn = document.getElementById('curatorAnalyzeBtn');
-  analyzeBtn.onclick = async function() {
-      // Show loading indicator
-      document.getElementById('curatorLoading').classList.remove('curator-hidden');
-      document.getElementById('curatorResponse').classList.add('curator-hidden');
-
-      // Get the report text
-      const reportText = document.getElementById('curatorTextarea').value;
-
-      try {
-          // Send request to the backend
-          const response = await fetch('/submit-report', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({ report: reportText, country: country }),
-          });
-
-          // Parse and display the response
-          const result = await response.json();
-          document.getElementById('curatorResponse').innerText = result.message;
-          document.getElementById('curatorResponse').classList.remove('curator-hidden');
-      } catch (error) {
-          document.getElementById('curatorResponse').innerText = 'Error analyzing report.';
-          document.getElementById('curatorResponse').classList.remove('curator-hidden');
-      } finally {
-          // Hide loading indicator
-          document.getElementById('curatorLoading').classList.add('curator-hidden');
-      }
-  };
-
-  // Handle cancel button click
-  const cancelBtn = document.getElementById('curatorCancelBtn');
-  cancelBtn.onclick = closePopup;
-
-  // Handle click outside the popup
-  function outsideClickListener(event) {
-      if (!popup.contains(event.target) && !analyzeBtn.contains(event.target) && !cancelBtn.contains(event.target)) {
-          closePopup();
-      }
-  }
-
-  // Add event listener for outside clicks
-  document.addEventListener('click', outsideClickListener);
-}
+</script>
