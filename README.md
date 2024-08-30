@@ -143,9 +143,13 @@ python rout_run.py
 
 ## Authors
  
-**Amine Ardhaoui**:[GitHub Profile](https://github.com/amine10a),[Mail](amine.ardhaoui2@gmail.com),[Phone](+21696216264)
+**Amine Ardhaoui**:[GitHub Profile](https://github.com/amine10a)
+Mail:amine.ardhaoui2@gmail.com
+Phone:+21696216264
 
-**Yassine Wada**:[Mail](yassinewada1@gmail.com ),[Phone](+21624029881)
+**Yassine Wada**:
+Mail:yassinewada1@gmail.com
+Phone:+21624029881
 
 
 
