@@ -1,4 +1,7 @@
-# Intelligent Sourcing
+# Intelligent Sourcing v1.1
+## Advanced Data Extraction and Processing Toolkit
+
+Efficient and modular tools for scraping, analyzing, and processing data from various online sources across multiple regions.
 
 <img src="https://raw.githubusercontent.com/MR10A/-intellegnt-sourcing/main/Readme/image.png?token=GHSAT0AAAAAACWKUL75LMTJGZI3NWM4JWUOZWRRSPA" alt="Web Crawler" width="100"/>
 
