@@ -110,13 +110,15 @@ HTML templates for rendering data in a web interface:
 * Installation
 Clone the repository.
 Install dependencies:
-_ ```bash
+_ Bash
+```bash
 pip install -r requirements.txt
 python
-  ```
-_ ```
-  import nltk
-  nltk.download('punkt')
+```
+  _ Python
+  ```python
+    import nltk
+    nltk.download('punkt')
   ```
 * Usage
 Run the main routine script:
