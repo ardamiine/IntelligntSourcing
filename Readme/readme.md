@@ -56,8 +56,8 @@ Directory Structure:
 │   ├── popup.html
 │   └── test.html
 ├── download/
-│   ├── data_suplier.html
-│   ├── LastToken.txt
+│   └── data_suplier.html
+│── LastToken.txt
 ├── requirements.txt
 ├── rout_run.py
 └── tools.py
@@ -110,30 +110,25 @@ Getting Started
 Prerequisites
 Ensure you have Python 3.x installed and the required libraries as listed in requirements.txt.
 
-Installation
+* Installation
 Clone the repository.
 Install dependencies:
-bash
+```bash
 Copier le code
 pip install -r requirements.txt
-Usage
+python
+```
+```python
+import nltk
+nltk.download('punkt')
+```
+* Usage
 Run the main routine script:
 
-bash
-Copier le code
+```bash
 python rout_run.py
-Modules can also be run individually for targeted data extraction.
+```
 
-Contributing
-Contributions are welcome! Please submit a pull request with a detailed description of the changes.
-
-License
-This project is licensed under the MIT License - see the LICENSE.md file for details.
-
-Acknowledgments
-Thanks to all contributors and the open-source community for the tools and libraries used in this project.
-
-Feel free to adjust the text to better match the specifics of your project!
 
 
 
