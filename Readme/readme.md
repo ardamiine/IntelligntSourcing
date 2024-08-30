@@ -110,16 +110,30 @@ HTML templates for rendering data in a web interface:
 * Installation
 Clone the repository.
 Install dependencies:
-_ Bash
 ```bash
 pip install -r requirements.txt
 python
 ```
-  _ Python
-  ```python
-    import nltk
-    nltk.download('punkt')
-  ```
+
+```python
+import nltk
+nltk.download('punkt')
+```
+* Config Scripts
+
+In the following scripts, update the path to the `buster.crx` file:
+
+- **unternehmensregister.py**
+- **insolvenzbekanntmachungen.py**
+- **endole.py**
+- **tes.py**
+
+Change the path in the code to:
+
+```python
+options.add_extension(r"app\buster.crx")
+```
+
 * Usage
 Run the main routine script:
 
