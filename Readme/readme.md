@@ -133,6 +133,10 @@ Change the path in the code to:
 ```python
 options.add_extension(r"app\buster.crx")
 ```
+* Config Selligent in **tools.py**
+```python
+def auth() :
+```
 
 * Usage
 Run the main routine script:
