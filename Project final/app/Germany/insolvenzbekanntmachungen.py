@@ -23,6 +23,7 @@ def converttoHtml(url,datem,dateM,mot):
     chrome_options = Options()
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('--disable-search-engine-choice-screen')
     dr=webdriver.Chrome(options=chrome_options)
     dr.get(url)
     element = dr.find_element(by='id', value="frm_suche:ldi_datumVon:datumHtml5")
@@ -261,10 +262,10 @@ def Insolvenzbekanntmachungen(keyword,datem,dateM,selligent=False,trans=True):
 
 if __name__ == "__main__":
     keyword="*GMbH" 
-    datem="15-08-2024"
-    dateM="15-08-2024"
+    datem="11-08-2024"
+    dateM="11-08-2024"
     data = Insolvenzbekanntmachungen(keyword,datem,dateM,selligent=False,trans=True)
-    
+    print(data)
 
     save_to_excel(data,"insolv.xlsx")
     
