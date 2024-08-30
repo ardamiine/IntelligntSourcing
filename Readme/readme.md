@@ -1,5 +1,6 @@
 #Intelligent Sourcing
-<img src="https://raw.githubusercontent.com/MR10A/-intellegnt-sourcing/main/Readme/image.png?token=GHSAT0AAAAAACWKUL75LMTJGZI3NWM4JWUOZWRRSPA" alt="Web Crawler" width="300"/>
+
+<img src="https://raw.githubusercontent.com/MR10A/-intellegnt-sourcing/main/Readme/image.png?token=GHSAT0AAAAAACWKUL75LMTJGZI3NWM4JWUOZWRRSPA" alt="Web Crawler" width="100"/>
 
 Directory Structure:
 ```
